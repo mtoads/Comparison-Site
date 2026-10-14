@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparison Site</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #172554;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .search {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 18px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #00000012;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #166534;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Compare It</h1>
+    <p>Compare your options. Make smarter decisions.</p>
+  </header>
+
+  <main>
+    <h2>Find a comparison</h2>
+    <p>Search the options below to get started.</p>
+
+    <div class="search">
+      <input id="searchInput" type="text"
+        placeholder="Search comparisons...">
+      <button onclick="searchItems()">Search</button>
+    </div>
+
+    <div id="results">
+      <div class="card" data-search="technology electronics">
+        <h2>Technology</h2>
+        <p>Compare technology products and features.</p>
+        <p>Coming soon</p>
+      </div>
+
+      <div class="card" data-search="home household">
+        <h2>Home and Household</h2>
+        <p>Explore options for your home.</p>
+        <p>Coming soon</p>
+      </div>
+
+      <div class="card" data-search="services">
+        <h2>Services</h2>
+        <p>Compare services and what they offer.</p>
+        <p>Coming soon</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Compare It &copy; 2026</p>
+  </footer>
+
+  <script>
+    function searchItems() {
+      const query = document
+        .getElementById("searchInput")
+        .value.toLowerCase()
+        .trim();
+
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach(function(card) {
+        const text = (
+          card.innerText + " " +
+          card.dataset.search
+        ).toLowerCase();
+
+        card.style.display =
+          text.includes(query) ? "block" : "none";
+      });
+    }
+
+    document.getElementById("searchInput")
+      .addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          searchItems();
+        }
+      });
+  </script>
+</body>
+</html>
